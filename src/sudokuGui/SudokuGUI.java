@@ -21,6 +21,8 @@ public class SudokuGUI extends JFrame {
     private static final int ASCII_1 = 49;
     private static final int ASCII_9 = 57;
 
+    private boolean waitForReset;
+
     private JPanel mainPanel;
     private JButton SolveBtn;
     private JButton ResetBtn;
@@ -117,7 +119,9 @@ public class SudokuGUI extends JFrame {
         SolveBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SolveBtnAction();
+                if (!waitForReset) {
+                    SolveBtnAction();
+                }
             }
         });
 
@@ -125,6 +129,7 @@ public class SudokuGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ResetBtnAction();
+                waitForReset = false;
             }
         });
     }
@@ -141,6 +146,7 @@ public class SudokuGUI extends JFrame {
      */
     private void init() {
         JTextField[][] textFields = new JTextField[BOARD_SIZE][BOARD_SIZE];
+        this.waitForReset = false;
 
         textFields[0][0] = this.R0C0;
         textFields[0][1] = this.R0C1;
@@ -288,6 +294,7 @@ public class SudokuGUI extends JFrame {
                     textFields[i][j].setEditable(false);
                 }
             }
+            waitForReset = true;
             statusField.setText("Your puzzle has been solved! The above shows the solution. To solve " +
                     "another puzzle, please click the Reset button and re-enter your clues.");
         } catch (MalformedBoardException mbe) {
