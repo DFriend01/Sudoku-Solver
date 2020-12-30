@@ -4,7 +4,7 @@ This repository contains source code that implements a sudoku solver GUI using t
 
 ![Image of GUI](/Images/intro_img.PNG)
 
-##Setup
+## Setup
 
 Clone this repository and create a new java project with the existing source files. Upon 
 creating the project, you may see that JUnit cannot be accessed by your IDE. Do one
@@ -15,7 +15,7 @@ of the following:
 
 Finally, run `SudokuGUI.main(String[] args)` to start the GUI.
 
-##Usage
+## Usage
 
 To solve a sudoku puzzle, enter your clues in the provided boxes. Clues must be 
 integers between 1 and 9 inclusive, and the clue configuration must follow the
