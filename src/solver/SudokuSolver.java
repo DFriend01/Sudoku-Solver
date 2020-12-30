@@ -1,7 +1,5 @@
 package solver;
 
-import java.util.Arrays;
-
 public class SudokuSolver {
 
     private static final int BOARD_SIZE = 9;
@@ -44,14 +42,9 @@ public class SudokuSolver {
      * method modifies the input "board" until a solution is determined
      * by the rules of Sudoku.
      *
-     * Modifies: board
-     *
-     * @param board The board to be modified and checked for solutions.
-     *
+     * @param board      The board to be modified and checked for solutions.
      * @param currentRow The current row of the board being operated on.
-     *
      * @param currentCol The current column of the board being operated on.
-     *
      * @return Returns true if a solution has been found, and false otherwise.
      */
     private static boolean searchSolution(int[][] board, int currentRow, int currentCol) {
@@ -97,14 +90,11 @@ public class SudokuSolver {
      * This method tests if an integer value "testNum" creates a valid
      * board configuration when testNum is placed at board[currentRow][currentCol].
      *
-     * @param board The board to be checked.
-     *
+     * @param board      The board to be checked.
      * @param currentRow The current row where the check is done.
-     *
      * @param currentCol The current column where the check is done.
-     *
-     * @param testNum An integer value between 1 and 9 inclusive that
-     * is tested for a valid board configuration.
+     * @param testNum    An integer value between 1 and 9 inclusive that
+     *                   is tested for a valid board configuration.
      *
      * @return Returns true if the inserted value "testNum" makes a
      * valid board configuration following the Sudoku Rules, and false
@@ -150,10 +140,10 @@ public class SudokuSolver {
      * of clues must follow the Sudoku rules.
      *
      * @param board A 2D array of integers to be checked for a valid
-     * clue configuration.
+     *              clue configuration.
      *
      * @throws MalformedBoardException This exception is thrown when the
-     * input board does not have a valid configuration.
+     *                                 input board does not have a valid configuration.
      */
     private static void checkInputBoard(int[][] board) throws MalformedBoardException {
         boolean validBoardConfig;

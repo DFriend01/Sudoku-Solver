@@ -5,12 +5,11 @@ import solver.SudokuSolver;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class SudokuGUI extends JFrame {
-    private static final int NORMAL_BACKGROUND1 = 0xFFFFFEFE;
-    private static final int NORMAL_BACKGROUND2 = 0xFFACAAAA;
+    private static final int NORMAL_BACKGROUND_WHITE = 0xFFFFFEFE;
+    private static final int NORMAL_BACKGROUND_GRAY = 0xFFACAAAA;
     private static final int INVALID_INPUT_BACKGROUND = 0xFFFA4849;
     private static final int BROKEN_RULE_BACKGROUND = 0xFFF3F155;
     private static final int NORMAL_FOREGROUND = 0xFF000000;
@@ -336,12 +335,12 @@ public class SudokuGUI extends JFrame {
             for (int col = 0; col < BOARD_SIZE; col++) {
                 rowUpperBound = row - (row % 3) + 2;
                 colUpperBound = col - (col % 3) + 2;
-                currentBlock = ((rowUpperBound + 1)/3 - 1) + (colUpperBound + 1);
+                currentBlock = ((rowUpperBound + 1) / 3 - 1) + (colUpperBound + 1);
 
                 if (currentBlock % 2 == 0) {
-                    textFields[row][col].setBackground(new Color(NORMAL_BACKGROUND1));
+                    textFields[row][col].setBackground(new Color(NORMAL_BACKGROUND_GRAY));
                 } else {
-                    textFields[row][col].setBackground(new Color(NORMAL_BACKGROUND2));
+                    textFields[row][col].setBackground(new Color(NORMAL_BACKGROUND_WHITE));
                 }
             }
         }

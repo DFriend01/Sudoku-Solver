@@ -2,8 +2,8 @@ package test;
 
 import solver.MalformedBoardException;
 import solver.SudokuSolver;
-
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class TestSudokuSolver {
@@ -134,6 +134,35 @@ public class TestSudokuSolver {
                 {5, 2, 6, 9, 4, 1, 7, 3, 8},
                 {4, 8, 1, 7, 3, 5, 2, 9, 6},
                 {7, 3, 9, 2, 6, 8, 1, 4, 5}
+        };
+
+        assertArrayEquals(solution, SudokuSolver.solve(testBoard));
+    }
+
+    @Test
+    public void testSolver4() throws MalformedBoardException {
+        int[][] testBoard = {
+                {9, 8, 7, -1, 1, -1, -1, -1, -1},
+                {-1, -1, -1, 8, -1, 4, -1, -1, -1},
+                {-1, -1, -1, 5, 9, -1, -1, -1, 1},
+                {-1, -1, 1, -1, -1, 8, -1, -1, -1},
+                {8, 5, 6, 7, -1, 9, -1, 4, 3},
+                {-1, -1, 9, -1, -1, -1, -1, 2, -1},
+                {-1, -1, -1, -1, -1, -1, -1, 1, 5},
+                {7, 4, 5, -1, -1, -1, 2, -1, -1},
+                {-1, -1, -1, 6, -1, -1, 7, -1, 4}
+        };
+
+        int[][] solution = {
+                {9, 8, 7, 3, 1, 6, 4, 5, 2},
+                {5, 1, 2, 8, 7, 4, 6, 3, 9},
+                {3, 6, 4, 5, 9, 2, 8, 7, 1},
+                {2, 3, 1, 4, 5, 8, 9, 6, 7},
+                {8, 5, 6, 7, 2, 9, 1, 4, 3},
+                {4, 7, 9, 1, 6, 3, 5, 2, 8},
+                {6, 9, 8, 2, 4, 7, 3, 1, 5},
+                {7, 4, 5, 9, 3, 1, 2, 8, 6},
+                {1, 2, 3, 6, 8, 5, 7, 9, 4}
         };
 
         assertArrayEquals(solution, SudokuSolver.solve(testBoard));
