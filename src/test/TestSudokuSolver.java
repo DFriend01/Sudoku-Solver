@@ -67,6 +67,23 @@ public class TestSudokuSolver {
         int[][] solution = SudokuSolver.solve(testBoard);
     }
 
+    @Test(expected = MalformedBoardException.class)
+    public void testException5() throws MalformedBoardException {
+        int[][] testBoard = {
+                {9, 5, 4, -1, -1, 7, -1, 8, -1},
+                {-1, -1, -1, -1, 6, -1, 3, 5, -1},
+                {-1, 1, 6, -1, -1, -1, -1, -1, 7},
+                {-1, -1, 9, -1, -1, 3, -1, -1, -1},
+                {-1, 3, -1, 1, -1, -1, -1, 2, 9},
+                {2, -1, -1, -1, 4, -1, 1, 7, -1},
+                {-1, -1, -1, 2, -1, -1, -1, -1, -1},
+                {-1, -1, 1, 3, -1, 9, -1, 6, -1},
+                {-1, 2, -1, -1, -1, -1, -1, 4, -1}
+        };
+
+        int[][] solution = SudokuSolver.solve(testBoard);
+    }
+
     @Test
     public void testSolver1() throws MalformedBoardException {
         int[][] testBoard = {

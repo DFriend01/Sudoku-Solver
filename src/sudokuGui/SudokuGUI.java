@@ -297,12 +297,16 @@ public class SudokuGUI extends JFrame {
             statusField.setText("Your puzzle has been solved! The above shows the solution. To solve " +
                     "another puzzle, please click the Reset button and re-enter your clues.");
         } catch (MalformedBoardException mbe) {
-            setInvalidBackground(inputBoard);
-            statusField.setText("It seems something went wrong with your input clues. Please " +
-                    "make sure that all inputs are integer values between 1 and 9 inclusive, and " +
-                    "that the input configuration follows the Sudoku rules. Inputs highlighted in " +
-                    "red are inputs that are not between 1 and 9. Inputs highlighted in yellow are inputs " +
-                    "that are between 1 and 9, but break the Sudoku rules.");
+            if(setInvalidBackground(inputBoard)) {
+                statusField.setText("It seems something went wrong with your input clues. Please " +
+                        "make sure that all inputs are integer values between 1 and 9 inclusive, and " +
+                        "that the input configuration follows the Sudoku rules. Inputs highlighted in " +
+                        "red are inputs that are not between 1 and 9. Inputs highlighted in yellow are inputs " +
+                        "that are between 1 and 9, but break the Sudoku rules.");
+            } else {
+                statusField.setText("There is no solution to this clue configuration. Please " +
+                        "click the reset button and enter another clue configuration.");
+            }
         }
     }
 
@@ -355,16 +359,21 @@ public class SudokuGUI extends JFrame {
      * Sudoku board.
      *
      * @param board The input board to be checked for invalid inputs.
+     *
+     * @return Returns true if any of the JTextField backgrounds are changed,
+     * and false if none of the backgrounds were changed.
      */
-    private void setInvalidBackground(int[][] board) {
+    private boolean setInvalidBackground(int[][] board) {
         int testNum;
         int rowUpperBound, rowLowerBound;
         int colUpperBound, colLowerBound;
+        boolean isEdited = false;
 
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int col = 0; col < BOARD_SIZE; col++) {
                 if (board[row][col] == INVALID_INPUT) {
                     textFields[row][col].setBackground(new Color(INVALID_INPUT_BACKGROUND));
+                    isEdited = true;
                 } else if (board[row][col] != EMPTY_BOX) {
                     testNum = board[row][col];
                     rowUpperBound = row - (row % 3) + 2;
@@ -378,6 +387,7 @@ public class SudokuGUI extends JFrame {
                                 if (board[i][j] == testNum) {
                                     textFields[row][col].setBackground(new Color(BROKEN_RULE_BACKGROUND));
                                     textFields[i][j].setBackground(new Color(BROKEN_RULE_BACKGROUND));
+                                    isEdited = true;
                                 }
                             }
                         }
@@ -387,6 +397,7 @@ public class SudokuGUI extends JFrame {
                             if (board[i][col] == testNum) {
                                 textFields[row][col].setBackground(new Color(BROKEN_RULE_BACKGROUND));
                                 textFields[i][col].setBackground(new Color(BROKEN_RULE_BACKGROUND));
+                                isEdited = true;
                             }
                         }
                     }
@@ -395,11 +406,13 @@ public class SudokuGUI extends JFrame {
                             if (board[row][j] == testNum) {
                                 textFields[row][col].setBackground(new Color(BROKEN_RULE_BACKGROUND));
                                 textFields[row][j].setBackground(new Color(BROKEN_RULE_BACKGROUND));
+                                isEdited = true;
                             }
                         }
                     }
                 }
             }
         }
+        return isEdited;
     }
 }

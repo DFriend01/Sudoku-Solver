@@ -33,8 +33,11 @@ public class SudokuSolver {
                 modifiedBoard[i][j] = board[i][j];
             }
         }
-        searchSolution(modifiedBoard, 0, 0);
-        return modifiedBoard;
+        if(searchSolution(modifiedBoard, 0, 0)) {
+            return modifiedBoard;
+        } else {
+            throw new MalformedBoardException("No solution found!");
+        }
     }
 
     /**
@@ -151,7 +154,7 @@ public class SudokuSolver {
         boolean isEmptySpot;
 
         if ((board.length != BOARD_SIZE) || (board[0].length != BOARD_SIZE)) {
-            throw new MalformedBoardException();
+            throw new MalformedBoardException("The board is not 9x9.");
         }
 
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -161,7 +164,7 @@ public class SudokuSolver {
                 isEmptySpot = (board[i][j] == EMPTY_SPOT_FLAG);
 
                 if (!(validBoardConfig || isEmptySpot) || !validInteger) {
-                    throw new MalformedBoardException();
+                    throw new MalformedBoardException("The clue configuration broke the sudoku rules.");
                 }
             }
         }
