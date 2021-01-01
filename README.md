@@ -1,3 +1,6 @@
+**Author: Devon Friend**
+**December 29, 2020**
+
 # Sudoku Solver GUI
 This repository contains source code that implements a sudoku solver GUI using the 
 [Java Swing API](https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html). 
