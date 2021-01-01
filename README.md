@@ -1,4 +1,4 @@
-**Author: Devon Friend**
+**Author: Devon Friend**  
 **December 29, 2020**
 
 # Sudoku Solver GUI
